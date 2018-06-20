@@ -1,0 +1,33 @@
+library(leaflet)
+library(dplyr)
+
+mapbox_ID <- "https://api.mapbox.com/styles/v1/19allaha/cjikdneys3eol2ss3jn2rppb5/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiMTlhbGxhaGEiLCJhIjoiY2ppZXA0MXVzMGU5ajNxb2NlejB5bDEzZyJ9.6kdWC2-T0tQHMc_McRlnLQ"
+mapbox_attributions <-"© <a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> Bird Map © <a href='https://nationalzoo.si.edu/migratory-birds'>SMBC</a>"
+
+leaflet()%>%
+  addTiles(urlTemplate = mapbox_ID, attribution = mapbox_attributions)%>%
+  setView(lat = 38.929616, lng = -77.049784, zoom = 8)%>%
+  addMarkers(lat = 38.929616, lng = -77.049784, popup = 'This is the Zoo!')
+
+df<- data.frame(latitude = runif(10, 38.929616, 38.939616),
+                longitude = runif(10,-77.049784, -77.048784))
+
+leaflet(df)%>%
+  addTiles(urlTemplate = mapbox_ID, attribution = mapbox_attributions)%>%
+  setView(lat = 38.929616, lng = -77.049784, zoom = 14)%>%
+  addMarkers(lat = 38.929616, lng = -77.049784, popup = 'This is the Zoo!')%>%
+  addCircles(lat = df$latitude, lng = df$longitude, popup = "This is a random circle!", weight = 3, radius = 70, color = "#4b42f4", stroke = TRUE, fillOpacity = 0.5)
+  addAwesomeMarkers()
+
+install.packages("shiny")
+library(shiny)
+
+install.packages("icons")
+
+install.packages("sp")
+library(sp)
+
+# install.packages("devtools")
+devtools::install_github("ropenscilabs/icon")
+
+icon("crow", class = NULL, lib = "font-awesome")
