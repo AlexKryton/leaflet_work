@@ -1,0 +1,28 @@
+<html>
+<head>
+<script  src="http://code.jquery.com/jquery-1.9.1.min.js"
+         src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+</head>
+<body>
+<script>
+
+/*$.get( "jQuery Get Started.html", function( data ) {
+  $( ".result" ).html( data );
+  alert( "Load was performed." );
+});
+*/
+$(document).ready(function(){
+    $("button").click(function(){
+        $("#div1").load("test.txt");
+    });
+});
+
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button>Get External Content</button>
+
+
+</script>
+</body>
+</html>

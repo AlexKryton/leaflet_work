@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>Simple Leaflet Map</title>
+    <meta charset="utf-8" />
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+
+    <link 
+       <link rel="stylesheet" 
+       href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+       integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+       crossorigin=""/>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 100%"></div>
+
+    <script
+        src="http://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+        src="/js/leaflet-0.7.2/leaflet.ajax.min.js"
+        src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'>
+    </script>
+
+    <script>
+
+        //Object Layers
+    
+
+        var Littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+            denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+            aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+            golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+
+        
+
+
+        var cities = L.layerGroup([Littleton,denver,aurora,golden]);
+
+        var ObjectLayers = {
+
+            "cities": cities,
+
+        };
+
+        //Map layers
+
+        var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 
+            'BirdMap '+ 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>' + 
+            ' SMBC',
+            });
+
+        var MapboxMap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',{accessToken: 'pk.eyJ1IjoiMTlhbGxhaGEiLCJhIjoiY2ppZXA0MXVzMGU5ajNxb2NlejB5bDEzZyJ9.6kdWC2-T0tQHMc_McRlnLQ', id: 'mapbox.streets', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',});
+
+        var EsriMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'})
+
+        var BaseMaps ={
+
+            "Streets": OpenStreetMap,
+            "Mapbox" : MapboxMap,
+            "EsriMap": EsriMap,
+        };
+
+        var map = L.map('map',{
+            center: [39.61, -105.02],
+            zoom: 10,
+            layers:[OpenStreetMap, MapboxMap, EsriMap]
+
+        });
+
+        //GeoJSON Layer
+
+        var point = L.GeoJSON.ajax("stations.GeoJSON");
+
+        var GeoJSONLayer = {
+            "point": point, 
+        };
+
+        //Control
+
+        L.control.layers(BaseMaps,ObjectLayers,GeoJSONLayer).addTo(map);
+
+    </script>
+</body>
+</html>
