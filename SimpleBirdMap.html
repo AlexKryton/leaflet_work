@@ -1,0 +1,508 @@
+<html>
+<head>
+    <title>Simple Leaflet Map</title>
+    <meta charset="utf-8" />
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+
+    <link 
+       <link rel="stylesheet" 
+       href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+       integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+       crossorigin=""/>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 100%"></div>
+
+    <script
+        src="http://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+        src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'>
+    </script>
+
+    <script>
+
+        //Object Layers
+    
+
+        var heronP1 = L.circleMarker([38.925,   -77.070], {color: 'black',fillColor: 'black',fillOpacity: 0.5,radius: 10}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP2 = L.circleMarker([32.933,   -80.120], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP3 = L.circleMarker([29.627,   -81.365], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP4 = L.circleMarker([27.590,   -81.001], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP5 = L.circleMarker([26.125,   -80.948], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP6 = L.circleMarker([25.370,   -80.723], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP7 = L.circleMarker([23.214,   -80.954], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP8 = L.circleMarker([22.493,   -81.307], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP9 = L.circleMarker([22.432,   -81.259], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP10 = L.circleMarker([22.368,  -81.312], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP11 = L.circleMarker([22.368,  -81.312], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP12 = L.circleMarker([22.254,  -81.492], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP13 = L.circleMarker([22.252,  -81.487], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP14 = L.circleMarker([38.922,  -77.005], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP15 = L.circleMarker([38.883,  -77.043], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP16 = L.circleMarker([38.917,  -77.126], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP17 = L.circleMarker([38.917,  -77.126], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP18 = L.circleMarker([38.930,  -77.051], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP19 = L.circleMarker([38.879,  -77.051], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP20 = L.circleMarker([29.130,  -81.020], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP21 = L.circleMarker([28.976,  -80.822], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP22 = L.circleMarker([22.468,  -81.348], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Parker'),
+            heronP23 = L.circleMarker([22.563,  -81.537], {color: 'green',fillColor: 'green',fillOpacity: 0.5,radius: 10}).bindPopup('This is a Black-crowned night heron, Parker');
+
+        var heronPcoordinates = [
+        new L.LatLng(38.925, -77.07),
+        new L.LatLng(32.933, -80.12),
+        new L.LatLng(29.627, -81.365),
+        new L.LatLng(27.59,  -81.001),
+        new L.LatLng(26.125, -80.948),
+        new L.LatLng(25.37,  -80.723),
+        new L.LatLng(23.214, -80.95),
+        new L.LatLng(22.493, -81.307),
+        new L.LatLng(22.432, -81.259),
+        new L.LatLng(22.368, -81.312),
+        new L.LatLng(22.368, -81.312),
+        new L.LatLng(22.254, -81.492),
+        new L.LatLng(22.252, -81.487),
+        new L.LatLng(38.922, -77.005),
+        new L.LatLng(38.883, -77.043),
+        new L.LatLng(38.917, -77.126),
+        new L.LatLng(38.917, -77.126),
+        new L.LatLng(38.93,  -77.051),
+        new L.LatLng(38.879, -77.051),
+        new L.LatLng(29.13,  -81.02),
+        new L.LatLng(28.976, -80.822),
+        new L.LatLng(22.468, -81.348),
+        new L.LatLng(22.563, -81.537),
+        ];
+
+        var polylineOptionsP = {
+               color: 'green',
+               weight: 3,
+               opacity: 0.9
+             };
+
+
+        var heronPline = L.polyline(heronPcoordinates, polylineOptionsP);
+
+        var BLCNHP = L.layerGroup([
+            heronP1,
+            heronP2,
+            heronP3,
+            heronP4,
+            heronP5,
+            heronP6,
+            heronP7,
+            heronP8,
+            heronP9,
+            heronP10,
+            heronP11,
+            heronP12,
+            heronP13,
+            heronP14,
+            heronP15,
+            heronP16,
+            heronP17,
+            heronP18,
+            heronP19,
+            heronP20,
+            heronP21,
+            heronP22,
+            heronP23
+
+            ]);
+
+        var heronS1 = L.circleMarker([38.931, -77.053], {color: 'black',fillColor: 'black',fillOpacity: 0.5,radius: 10}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS2 = L.circleMarker([38.781, -76.559], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS3 = L.circleMarker([38.781, -76.556], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS4 = L.circleMarker([38.779, -76.561], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS5 = L.circleMarker([39.535, -76.092], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS6 = L.circleMarker([39.495, -76.092], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS7 = L.circleMarker([39.225, -75.384], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS8 = L.circleMarker([37.637, -75.667], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS9 = L.circleMarker([26.366, -80.999], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS10 = L.circleMarker([26.347,-81.027], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS11 = L.circleMarker([26.352,-81.033], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS12 = L.circleMarker([26.147,-80.633], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS13 = L.circleMarker([26.157,-80.628], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS14 = L.circleMarker([26.154,-80.548], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS15 = L.circleMarker([37.169,-76.797], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS16 = L.circleMarker([38.94, -77.153], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS17 = L.circleMarker([38.886,-77.125], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS18 = L.circleMarker([38.933,-77.134], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS19 = L.circleMarker([38.93, -77.051], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS20 = L.circleMarker([39.226,-75.426], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS21 = L.circleMarker([26.356,-81.016], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS22 = L.circleMarker([26.359, -81.001], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith'),
+            heronS23 = L.circleMarker([26.361, -81.002], {color: 'blue',fillColor: 'blue',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Black-crowned night heron, Smith');
+
+            var heronScoordinates = [
+        new L.LatLng(38.9313,  -77.0535),
+        new L.LatLng(38.781,    -76.559),
+        new L.LatLng(38.781,    -76.556),
+        new L.LatLng(38.779,    -76.561),
+        new L.LatLng(39.535,    -76.092),
+        new L.LatLng(39.495,    -76.092),
+        new L.LatLng(39.225,    -75.384),
+        new L.LatLng(37.637,    -75.667),
+        new L.LatLng(26.366,    -80.999),
+        new L.LatLng(26.347,    -81.027),
+        new L.LatLng(26.352,    -81.033),
+        new L.LatLng(26.147,    -80.633),
+        new L.LatLng(26.157,    -80.628),
+        new L.LatLng(26.154,    -80.548),
+        new L.LatLng(37.169,    -76.797),
+        new L.LatLng(38.94,     -77.153),
+        new L.LatLng(38.886,    -77.125),
+        new L.LatLng(38.933,    -77.134),
+        new L.LatLng(38.93,     -77.051),
+        new L.LatLng(39.226,    -75.426),
+        new L.LatLng(26.356,    -81.016),
+        new L.LatLng(26.359,    -81.001),
+        new L.LatLng(26.361,    -81.002),
+        ];
+
+        var polylineOptionsS = {
+               color: 'blue',
+               weight: 3,
+               opacity: 0.9
+             };
+
+            var heronSline = L.polyline(heronScoordinates, polylineOptionsS);
+
+
+        var BLCNHS = L.layerGroup([
+            heronS1,
+            heronS2,
+            heronS3,
+            heronS4,
+            heronS5,
+            heronS6,
+            heronS7,
+            heronS8,
+            heronS9,
+            heronS10,
+            heronS11,
+            heronS12,
+            heronS13,
+            heronS14,
+            heronS15,
+            heronS16,
+            heronS17,
+            heronS18,
+            heronS19,
+            heronS20,
+            heronS21,
+            heronS22,
+            heronS23
+
+            ]);
+
+       var  loonAI1 = L.circleMarker([27.86583,   -97.34694], {color: 'black',fillColor: 'black',fillOpacity: 0.5,radius: 10}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI2 = L.circleMarker([36.32095,   -234.6625], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI3 = L.circleMarker([36.56535,   -235.8366], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI4 = L.circleMarker([36.81045,   -234.8037], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI5 = L.circleMarker([37.61087,   -235.0483], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI6 = L.circleMarker([38.80326,   -231.5986], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI7 = L.circleMarker([41.23306,   -228.7248], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI8 = L.circleMarker([46.93123,   -216.7888], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI9 = L.circleMarker([53.55897,   -208.3698], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI10 = L.circleMarker([61.24233,  -195.3085], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI11 = L.circleMarker([63.42659,  -179.7831], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI12 = L.circleMarker([70.32233,  -151.0136], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI13 = L.circleMarker([70.30597,  -150.9946], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI14 = L.circleMarker([70.66766,  -151.2008], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI15 = L.circleMarker([70.6457,   -151.5435], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI16 = L.circleMarker([70.31757,  -151.0281], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI17 = L.circleMarker([70.32735,  -150.9866], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI18 = L.circleMarker([70.59547,  -151.0400], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI19 = L.circleMarker([70.32951,  -151.0080], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI20 = L.circleMarker([70.8216,   -151.3966], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI21 = L.circleMarker([70.74931,  -151.1109], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI22 = L.circleMarker([70.32829,  -151.0293], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI23 = L.circleMarker([70.33635,  -151.0597], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI24 = L.circleMarker([70.67984,  -151.0000], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI25 = L.circleMarker([71.3578,   -160.4261], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI26 = L.circleMarker([70.90073,  -165.9032], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI27 = L.circleMarker([70.24856,  -166.7018], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI28 = L.circleMarker([70.27339,  -168.0171], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI29 = L.circleMarker([65.98813,  -169.6567], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI30 = L.circleMarker([66.04737,  -169.4663], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI31 = L.circleMarker([65.47465,  -170.7513], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI32 = L.circleMarker([58.59797,  -196.9996], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI33 = L.circleMarker([52.78015,  -200.5961], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI34 = L.circleMarker([47.75738,  -212.6238], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01'),
+            loonAI35 = L.circleMarker([41.80036,  -217.1257], {color: 'red',fillColor: 'red',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-01');
+
+            var PLAIcoordinates = [
+        new L.LatLng(27.86583,  -97.34694),
+        new L.LatLng(36.32095,  -234.66252),
+        new L.LatLng(36.56535,  -235.8366),
+        new L.LatLng(36.81045,  -234.80377),
+        new L.LatLng(37.61087,  -235.04838),
+        new L.LatLng(38.80326,  -231.59867),
+        new L.LatLng(41.23306,  -228.72488),
+        new L.LatLng(46.93123,  -216.78887),
+        new L.LatLng(53.55897,   -208.3698),
+        new L.LatLng(61.24233,  -195.30853),
+        new L.LatLng(63.42659,  -179.78313),
+        new L.LatLng(70.32233,  -151.01361),
+        new L.LatLng(70.30597,  -150.99467),
+        new L.LatLng(70.66766,  -151.20083),
+        new L.LatLng(70.6457,   -151.54350),
+        new L.LatLng(70.31757,  -151.02810),
+        new L.LatLng(70.32735,  -150.98662),
+        new L.LatLng(70.59547,  -151.04008),
+        new L.LatLng(70.32951,  -151.00800),
+        new L.LatLng(70.8216,   -151.39662),
+        new L.LatLng(70.74931,  -151.11095),
+        new L.LatLng(70.32829,  -151.02937),
+        new L.LatLng(70.33635,  -151.05970),
+        new L.LatLng(70.67984,  -151.00005),
+        new L.LatLng(71.3578,   -160.42610),
+        new L.LatLng(70.90073,  -165.90327),
+        new L.LatLng(70.24856,  -166.70180),
+        new L.LatLng(70.27339,  -168.01718),
+        new L.LatLng(65.98813,  -169.65678),
+        new L.LatLng(66.04737,  -169.46630),
+        new L.LatLng(65.47465,  -170.75131),
+        new L.LatLng(58.59797,  -196.99964),
+        new L.LatLng(52.78015,  -200.59610),
+        new L.LatLng(47.75738,  -212.62381),
+        new L.LatLng(41.80036,  -217.12572),
+        ];
+
+        var polylineOptionsPLAI = {
+               color: 'red',
+               weight: 3,
+               opacity: 0.9
+             };
+
+            var PLAIline = L.polyline(PLAIcoordinates, polylineOptionsPLAI);
+
+
+        var PLAI = L.layerGroup([
+            loonAI1,
+            loonAI2,
+            loonAI3,
+            loonAI4,
+            loonAI5,
+            loonAI6,
+            loonAI7,
+            loonAI8,
+            loonAI9,
+            loonAI10,
+            loonAI11,
+            loonAI12,
+            loonAI13,
+            loonAI14,
+            loonAI15,
+            loonAI16,
+            loonAI17,
+            loonAI18,
+            loonAI19,
+            loonAI20,
+            loonAI21,
+            loonAI22,
+            loonAI23,
+            loonAI24,
+            loonAI25,
+            loonAI26,
+            loonAI27,
+            loonAI28,
+            loonAI29,
+            loonAI30,
+            loonAI31,
+            loonAI32,
+            loonAI33,
+            loonAI34,
+            loonAI35
+            ]);
+
+        var  loomA1 = L.circleMarker([33.70936, -236.07057], {color: 'black',fillColor: 'black',fillOpacity: 0.5,radius: 10}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+         loomA2 = L.circleMarker([34.83125, -236.3398], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+         loomA3 = L.circleMarker([35.82405, -235.94457], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA4 = L.circleMarker([36.61825, -235.30653], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA5 = L.circleMarker([36.84548, -235.00094], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA6 = L.circleMarker([36.90158, -235.31101], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA7 = L.circleMarker([37.58679, -235.34477], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA8 = L.circleMarker([42.1395,  -227.44946], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA9 = L.circleMarker([46.07048, -217.13135], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA10 = L.circleMarker([54.352,  -204.5027], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA11 = L.circleMarker([56.98923,    -203.90419], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA12 = L.circleMarker([60.47419,    -188.84721], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA13 = L.circleMarker([62.34334,    -182.94753], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA14 = L.circleMarker([64.51269, -171.7731], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA15 = L.circleMarker([70.25622,    -160.21656], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA16 = L.circleMarker([70.30903,    -150.96835], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA17 = L.circleMarker([70.33104,    -151.01724], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA18 = L.circleMarker([70.32297,    -150.960467], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA19 = L.circleMarker([70.32988,    -151.02206], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA20 = L.circleMarker([70.33374,    -151.00887], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA21 = L.circleMarker([70.33521,    -151.00816], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA22 = L.circleMarker([71.24835,    -154.35816], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA23 = L.circleMarker([71.21572,    -152.67801], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA24 = L.circleMarker([71.0975, -160.07712], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA25 = L.circleMarker([70.37145,    -163.53049], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA26 = L.circleMarker([69.93804,    -166.17279], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA27 = L.circleMarker([66.65098,    -170.99206], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA28 = L.circleMarker([66.21187,    -169.58311], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA29 = L.circleMarker([50.80307,   -203.84808], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA30 = L.circleMarker([49.14888,    -212.84589], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA31 = L.circleMarker([44.13757,    -215.08568], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+          loomA32 = L.circleMarker([45.26891,    -218.71072], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03'),
+         loomA33 = L.circleMarker([42.55232,    -222.10538], {color: 'yellow',fillColor: 'yellow',fillOpacity: 0.5,radius: 5}).bindPopup('This is a Pacific  Loom, Alpine-03');
+
+                    var PLAIIIcoordinates = [
+        new L.LatLng(33.84558,  -235.43907),
+        new L.LatLng(33.70936,  -236.07057),
+        new L.LatLng(34.83125,  -236.3398),
+        new L.LatLng(35.82405,  -235.94457),
+        new L.LatLng(36.61825,  -235.30653),
+        new L.LatLng(36.84548,  -235.00094),
+        new L.LatLng(36.90158,  -235.31101),
+        new L.LatLng(37.58679,  -235.34477),
+        new L.LatLng(42.1395,   -227.44946),
+        new L.LatLng(46.07048,  -217.13135),
+        new L.LatLng(54.352,    -204.5027),
+        new L.LatLng(56.98923,  -203.90419),
+        new L.LatLng(60.47419,  -188.84721),
+        new L.LatLng(62.34334,  -182.94753),
+        new L.LatLng(64.51269,  -171.7731),
+        new L.LatLng(70.25622,  -160.21656),
+        new L.LatLng(70.30903,  -150.96835),
+        new L.LatLng(70.33104,  -151.01724),
+        new L.LatLng(70.32297,  -150.96046),
+        new L.LatLng(70.32988,  -151.02206),
+        new L.LatLng(70.33374,  -151.00887),
+        new L.LatLng(70.33521,  -151.00816),
+        new L.LatLng(71.24835,  -154.35816),
+        new L.LatLng(71.21572,  -152.67801),
+        new L.LatLng(71.0975,   -160.07712),
+        new L.LatLng(70.37145,  -163.53049),
+        new L.LatLng(69.93804,  -166.17279),
+        new L.LatLng(66.65098,  -170.99206),
+        new L.LatLng(66.21187,  -169.58311),
+        new L.LatLng(50.80307,  -203.84808),
+        new L.LatLng(49.14888,  -212.84589),
+        new L.LatLng(44.13757,  -215.08568),
+        new L.LatLng(45.26891,   -218.71072),
+        new L.LatLng(42.55232,  -222.10538),
+        ];
+
+        var polylineOptionsPLAIII = {
+               color: 'yellow',
+               weight: 3,
+               opacity: 0.9
+             };
+
+            var PLAIIIline = L.polyline(PLAIIIcoordinates, polylineOptionsPLAIII);
+
+
+
+        var PLAIII = L.layerGroup([
+             loomA1,
+             loomA2,
+             loomA3,
+             loomA4,
+             loomA5,
+             loomA6,
+             loomA7,
+             loomA8,
+             loomA9,
+             loomA10,
+             loomA11,
+             loomA12,
+             loomA13,
+             loomA14,
+             loomA15,
+             loomA16,
+             loomA17,
+             loomA18,
+             loomA19,
+             loomA20,
+             loomA21,
+             loomA22,
+             loomA23,
+             loomA24,
+             loomA25,
+             loomA26,
+             loomA27,
+             loomA28,
+             loomA29,
+             loomA30,
+             loomA31,
+             loomA32,
+             loomA33
+
+            ]);
+
+
+        var BirdLayer = {
+
+            "Parker": BLCNHP,
+            "  Parker Path": heronPline,
+            "Smith":BLCNHS,
+            "  Smith Path": heronSline,
+            "Pacific Loom Alpine-01":PLAI,
+            "Pacific Loom Alpine-01 Path":PLAIline,
+            "Pacific  Loom Alpine-03":PLAIII,
+            "Pacific Loom Alpine-03 Path":PLAIIIline,
+            
+        };
+
+        //Map layers
+
+        var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 
+            'BirdMap '+ 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>' + 
+            ' SMBC',
+            });
+
+        var MapboxMap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',{accessToken: 'pk.eyJ1IjoiMTlhbGxhaGEiLCJhIjoiY2ppZXA0MXVzMGU5ajNxb2NlejB5bDEzZyJ9.6kdWC2-T0tQHMc_McRlnLQ', id: 'mapbox.streets', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',});
+
+        var ErsiMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'});
+
+        var OutdoorMap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',{accessToken: 'pk.eyJ1IjoiMTlhbGxhaGEiLCJhIjoiY2ppZXA0MXVzMGU5ajNxb2NlejB5bDEzZyJ9.6kdWC2-T0tQHMc_McRlnLQ', id: 'mapbox.outdoors', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',});
+
+        var BaseMaps ={
+
+            "Streets": OpenStreetMap,
+            "Mapbox" : MapboxMap,
+            "EsriMap": ErsiMap,
+            "OutdoorMap":OutdoorMap,
+        };
+
+        var map = L.map('map',{
+            center: [39.8283, -98.5795],
+            zoom: 4,
+            layers:[OpenStreetMap, ErsiMap, MapboxMap, OutdoorMap]
+
+        });
+
+        //GeoJSON Layer
+
+        //Control
+
+        L.control.layers(BaseMaps,BirdLayer).addTo(map);
+
+        var legend = L.control({position:"bottomright"});
+
+        legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [1,2,3,4,5],
+        labels = [];
+
+        for (var i = 0; i < grades.length; i++) {
+        div.innerHTML += ("This is the legend") +'<br>';
+    }
+
+    return div;
+    }
+
+    legend.addTo(map);
+
+
+    </script>
+</body>
+</html>
